@@ -98,7 +98,7 @@ const TableContacts = () => {
                         color="blue-gray"
                         className="font-medium"
                       >
-                        Edit
+                        Eliminar
                       </Typography>
                     </td>
                   </tr>
