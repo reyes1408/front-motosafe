@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card, Typography } from "@material-tailwind/react";
 
-const TableContacts = () => {
-  const [contactos, setContactos] = useState([]);
+const TableEvents = () => {
+  const [eventos, setEventos] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +22,7 @@ const TableContacts = () => {
           throw new Error("Error al obtener los contactos");
         }
         const data = await response.json();
-        setContactos(data.data); // Cambio aquí, accediendo a la propiedad 'data'
+        setEventos(data.data); // Cambio aquí, accediendo a la propiedad 'data'
       } catch (error) {
         console.error("Error:", error);
       }
@@ -41,35 +41,44 @@ const TableContacts = () => {
                 <Typography
                   variant="small"
                   color="blue-gray"
-                  className="font-normal leading-none opacity-70"
+                  className="font-normal leading-none opacity-70 text-center"
                 >
-                  Nombre
+                  Evento
                 </Typography>
               </th>
               <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
                 <Typography
                   variant="small"
                   color="blue-gray"
-                  className="font-normal leading-none opacity-70"
+                  className="font-normal leading-none opacity-70 text-center"
                 >
-                  Correo
+                  Fecha y hora
                 </Typography>
               </th>
               <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
                 <Typography
                   variant="small"
                   color="blue-gray"
-                  className="font-normal leading-none opacity-70"
+                  className="font-normal leading-none opacity-70 text-center"
                 >
-                  Acción
+                  Ubicacion
+                </Typography>
+              </th>
+              <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="font-normal leading-none opacity-70 text-center"
+                >
+                  Contacto de emergencia
                 </Typography>
               </th>
             </tr>
           </thead>
           <tbody>
-            {contactos.map(({ name, email }, index) => {
+            {eventos.map(({ name, email }, index) => {
               // Cambio aquí, utilizando 'name' y 'email'
-              const isLast = index === contactos.length - 1;
+              const isLast = index === eventos.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
@@ -102,7 +111,18 @@ const TableContacts = () => {
                       color="blue-gray"
                       className="font-medium"
                     >
-                      Eliminar
+                      Ubicacion
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      as="a"
+                      href="#"
+                      variant="small"
+                      color="blue-gray"
+                      className="font-medium"
+                    >
+                      Contacto
                     </Typography>
                   </td>
                 </tr>
@@ -115,4 +135,4 @@ const TableContacts = () => {
   );
 };
 
-export default TableContacts;
+export default TableEvents;

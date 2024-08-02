@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const NewUserModal = ({ closeModal }) => {
   const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
+  const [telefono, setTelefono] = useState("");
 
   NewUserModal.propTypes = {
     closeModal: PropTypes.func.isRequired,
@@ -13,14 +13,33 @@ const NewUserModal = ({ closeModal }) => {
     setNombre(e.target.value);
   };
 
-  const handleCorreoChange = (e) => {
-    setCorreo(e.target.value);
+  const handleTelefonoChange = (e) => {
+    setTelefono(e.target.value);
   };
 
   const agregar = () => {
-    console.log("Nombre:", nombre);
-    console.log("Correo:", correo);
-    closeModal();
+    const data = {
+      id_user: "a81b5919-aeb8-49fa-8935-96ba2a59692b",
+      name: nombre,
+      cellphone: telefono
+    };
+
+    // Opciones para la solicitud fetch
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    };
+
+    // Realizar la solicitud fetch
+    fetch("http://localhost:3000/contacts", requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al agregar usuario");
+        }
+        closeModal();
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
@@ -42,10 +61,10 @@ const NewUserModal = ({ closeModal }) => {
         />
         <input
           type="text"
-          placeholder="Correo electrónico"
+          placeholder="Telefono"
           className="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 mb-4"
-          value={correo}
-          onChange={handleCorreoChange}
+          value={telefono}
+          onChange={handleTelefonoChange}
         />
         <button
           className="bg-gradient-to-tl from-purple-950 to-rose-600 text-white font-semibold w-full px-4 py-2 rounded"

@@ -33,16 +33,22 @@ const Login = () => {
                   placeholder="Contraseña"
                 />
                 <img
-                  className="w-20 absolute -top-12 left-80 rotate-3 animate-bounce"
+                  className="w-20 absolute -top-12 left-80 rotate-3"
                   src={casco}
                   alt="casco"
                 />
               </div>
               <Link to="/Menu">
-                <button className="w-96 h-14 mt-20 block outline-none bg-rose-500 text-white rounded-xl text-xl font-semibold shadow-gray-800 shadow-md">
+                <button className="w-96 h-14 mt-20 mb-3 block outline-none bg-rose-500 text-white rounded-xl text-xl font-semibold shadow-gray-800 shadow-md">
                   Aceptar
                 </button>
               </Link>
+              <div className="flex">
+                <p className="text-white pr-1">¿No tienes una cuenta?</p>
+                <Link to="/Registro">
+                  <p className="text-white font-semibold">ingresa aquí</p>
+                </Link>
+              </div>
             </div>
           </div>
 
